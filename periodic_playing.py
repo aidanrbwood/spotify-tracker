@@ -3,9 +3,12 @@
 import currently_playing
 import refresh
 import threading
+import spotify_logging as logging
+import database_helper
 
 previous_track_id = ''
 previous_play_time = 0
+tracking = True
 
 def track_logic():
 	global previous_track_id
@@ -25,17 +28,26 @@ def track_logic():
 			if play_time < previous_play_time:
 				elapsed = previous_play_time - play_time
 				if elapsed > 80:
-					currently_playing.write_to_db(track_id)
+					database_helper.write_to_db(track_id)
 		else:
-			currently_playing.write_to_db(track_id)
+			database_helper.write_to_db(track_id)
 			previous_track_id = track_id
 		previous_play_time = play_time
 			
 
 def timer_shell():
-	threading.Timer(10.0, timer_shell).start()
-	track_logic()
-	print("called logic")
+	global tracking
+	if tracking:	
+		threading.Timer(10.0, timer_shell).start()
+		track_logic()
 
-timer_shell()
+def stop_tracking():
+	global tracking
+	tracking = False
+	logging.log_info('Stopping tracking...')
 
+def start_tracking():
+	global tracking
+	logging.log_info('Starting tracking...')
+	tracking = True
+	timer_shell()

@@ -4,6 +4,7 @@ import requests
 import base64
 import subprocess
 import info_lookup
+import spotify_logging as logging
 
 def refresh_token():
 	refresh_token = info_lookup.refresh_token()
@@ -19,7 +20,7 @@ def refresh_token():
 	payload = (('grant_type', 'refresh_token'), ('refresh_token', refresh_token))
 
 	r = requests.post(url, headers=header, params=payload)
-	print(r.status_code)
+	logging.log_info('refresh code status code' + r.status_code)
 	f = open('access_token', 'w')
 	response = r.json()
 
