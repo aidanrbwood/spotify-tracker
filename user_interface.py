@@ -10,6 +10,7 @@ menu['2'] = 'Stop tracking'
 menu['3'] = 'Highest play track'
 menu['4'] = 'Highest play artist'
 menu['5'] = 'Print database'
+menu['6'] = 'Print history'
 
 options = list(menu.keys())
 options.sort()
@@ -33,6 +34,8 @@ while not exit_program:
 		user_requests.highest_play_artist()
 	elif user_input == '5':
 		user_requests.print_db()
+	elif user_input == '6':
+		user_requests.print_history()
 	else:
 		print('Unknown input')	
 		

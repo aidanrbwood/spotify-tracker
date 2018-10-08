@@ -22,13 +22,13 @@ def currently_playing():
 		response = get.json()
 		track_duration = response['item']['duration_ms'] / 1000
 		track_elapsed = response['progress_ms'] / 1000
-		album = response['item']['album']['name'].replace("-", "_")
+		album = response['item']['album']['name'].replace("-", "`")
 		artist = ''
 		for a in response['item']['artists']:
-			artist = artist + a['name'].replace("-", "_") + ','
+			artist = artist + a['name'].replace("-", "`") + ','
 		artist = artist[:-1]
-		song = response['item']['name'].replace("-", "_")
-		track = str(song + '-' + album + '-' + artist).replace(" ", "_")
+		song = response['item']['name'].replace("-", "`")
+		track = str(song + '-' + album + '-' + artist).replace("_", ";").replace(" ", "_")
 		#pprint.pprint(response)
 	elif status_code == 204:
 		logging.log_info(str(status_code) + ": nothing playing right now, or private session")

@@ -65,8 +65,7 @@ def print_db():
 			for song in song_list:
 				database_helper.print_track(artists[artist][album][song], db[artists[artist][album][song]])
 				
-	#keys.sort()
-	#for track in keys:
-	#	database_helper.print_track(track, db[track])
-
-	
+def print_history():
+	history = database_helper.open_history()
+	for track in history:
+		database_helper.print_track(track, '')		

@@ -20,7 +20,7 @@ def refresh_token():
 	payload = (('grant_type', 'refresh_token'), ('refresh_token', refresh_token))
 
 	r = requests.post(url, headers=header, params=payload)
-	logging.log_info('refresh code status code' + r.status_code)
+	logging.log_info('refresh code status code ' + str(r.status_code))
 	f = open('access_token', 'w')
 	response = r.json()
 

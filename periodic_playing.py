@@ -29,8 +29,10 @@ def track_logic():
 				elapsed = previous_play_time - play_time
 				if elapsed > 80:
 					database_helper.write_to_db(track_id)
+					database_helper.add_to_history(track_id)
 		else:
 			database_helper.write_to_db(track_id)
+			database_helper.add_to_history(track_id)
 			previous_track_id = track_id
 		previous_play_time = play_time
 			

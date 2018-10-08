@@ -11,6 +11,13 @@ def open_db():
 			database[identifier] = int(playcount)
 	return database
 
+def open_history():
+	history = []
+	with open('history') as h:
+		for line in h:
+			history.append(line)
+	return history
+
 def print_track(track, plays):
 	fields = track.split('-')
 	song = fields[0]
@@ -30,7 +37,7 @@ def print_track(track, plays):
 	else:
 		artist = artist + filler[:40-len(artist)-wide_chars(artist)]
 		
-	print(song + ' ' + album + ' ' + artist + ' ' + str(plays))
+	print(decode_str(song) + ' ' + decode_str(album) + ' ' + decode_str(artist) + ' ' + str(plays))
 
 def print_artist(artist, plays):
 	filler = "                                        "
@@ -39,9 +46,13 @@ def print_artist(artist, plays):
 		artist = artist[:37 - wide_chars(artist[:37])] + '...'
 	else:
 		artist = artist + filler[:40-len(artist)-wide_chars(artist)]
-	print(artist + ' ' + str(plays))
-	
-	
+	print(decode_str(artist) + ' ' + str(plays))
+
+
+def decode_str(string):
+	# Unfo the slight encoding performed when creating the track-id's to minimize any printing errors
+	return string.replace("_", " ").replace(";", "_").replace("`", "-")
+
 def write_to_db(track):	
 	database = {}
 	with open('database') as d:
@@ -62,6 +73,10 @@ def write_to_db(track):
 
 	with open('database', 'w') as d:
 		d.writelines(list_database)
+
+def add_to_history(track):
+	with open('history', 'a') as h:
+		h.write(track + '\n')
 
 def wide_chars(s):
     return sum(unicodedata.east_asian_width(x)=='W' for x in s)
