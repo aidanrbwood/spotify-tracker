@@ -29,9 +29,8 @@ def currently_playing():
 		artist = artist[:-1]
 		song = response['item']['name'].replace("-", "`")
 		track = str(song + '-' + album + '-' + artist).replace("_", ";").replace(" ", "_")
-		#pprint.pprint(response)
 	elif status_code == 204:
-		logging.log_info(str(status_code) + ": nothing playing right now, or private session")
+		logging.log_verbose(str(status_code) + ": nothing playing right now, or private session")
 	elif status_code == 401:
 		logging.log_info(str(status_code) + ": needs a new token")
 	else:

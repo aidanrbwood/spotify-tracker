@@ -68,4 +68,4 @@ def print_db():
 def print_history():
 	history = database_helper.open_history()
 	for track in history:
-		database_helper.print_track(track, '')		
+		database_helper.print_track(track[:-1], '')		
