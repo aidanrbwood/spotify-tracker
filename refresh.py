@@ -5,9 +5,10 @@ import base64
 import subprocess
 import info_lookup
 import spotify_logging as logging
+import common_functions as cmn
 
 def refresh_token():
-	refresh_token = info_lookup.refresh_token()
+	refresh_token = cmn.read_usr('refresh_token')
 	url = 'https://accounts.spotify.com/api/token'
 	client_id = 'def3e457b3604f958efa7a419bb277bf'
 	client_secret = 'a244c4f6748c498c896be0f18f918700'
@@ -21,10 +22,7 @@ def refresh_token():
 
 	r = requests.post(url, headers=header, params=payload)
 	logging.log_info('refresh code status code ' + str(r.status_code))
-	f = open('access_token', 'w')
 	response = r.json()
-
 	returned_token = response['access_token']
-
-	f.write(returned_token)
-	f.close()
+	
+	cmn.write_usr('access_token', returned_token)
