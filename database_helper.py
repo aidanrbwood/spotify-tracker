@@ -18,11 +18,11 @@ def open_history():
 			history.append(line)
 	return history
 
-def print_track(track, plays):
-	fields = track.split('-')
-	song = fields[0]
-	album = fields[1]
-	artist = fields[2]
+def print_track(track):
+	song = track['name']
+	album = track['album']
+	artist = track['artist']
+	plays = track['plays']
 	filler = "                                        "
 	if (len(song) + wide_chars(song[:37]) > 37):
 		song = song[:37 - wide_chars(song[:37])] + '...'

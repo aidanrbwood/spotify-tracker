@@ -13,7 +13,7 @@ def log_error(msg):
         log.write('ERROR:\t'+ current_time() + '\t' + msg + '\n')
 
 def current_time():
-    return str(datetime.datetime.utcnow()).split('.')[0]
+    return datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
 def log_verbose(msg):
     global verbose
