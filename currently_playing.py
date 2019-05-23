@@ -2,11 +2,11 @@
 
 import requests
 import pprint
-import info_lookup
+import user_info
 import spotify_logging as logging
 
 def currently_playing():
-	access_token = info_lookup.access_token()
+	access_token = user_info.read_access_token()
 	authorization = str('Bearer ' + access_token)
 
 	url = 'https://api.spotify.com/v1/me/player/currently-playing'

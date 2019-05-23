@@ -8,7 +8,7 @@ import database_helper
 
 previous_track_id = ''
 previous_play_time = 0
-tracking = True
+tracking = False
 
 def track_logic():
     global previous_track_id

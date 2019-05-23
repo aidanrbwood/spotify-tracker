@@ -2,13 +2,13 @@
 
 import requests
 import base64
-import info_lookup
+import user_info
 
-code=info_lookup.authorization_code()
+code=user_info.read_authorization_code()
 url='https://accounts.spotify.com/api/token'
 redirect='http://niceme.me/'
-client_id=info_lookup.user_id()
-client_secret=info_lookup.user_secret()
+client_id=user_info.read_user_id()
+client_secret=user_info.read_user_secret()
 
 client=str('Basic ' + client_id + ':' + client_secret)
 #header={'Authorization': client}

@@ -32,10 +32,10 @@ while not exit_program:
 		exit_program = True
 	elif user_input == '1':
 		periodic_playing.start_tracking()
-		is_running = True
+		is_tracking = True
 	elif user_input == '2':
 		periodic_playing.stop_tracking()
-		is_running = False
+		is_tracking = False
 	elif user_input == '3':
 		user_requests.highest_play_track()
 	elif user_input == '4':
