@@ -28,14 +28,21 @@ while not exit_program:
 	user_input = input('Please select:')
 	if user_input == '0':
 		if is_tracking:
+			print('Stopping tracking...')
 			periodic_playing.stop_tracking()
 		exit_program = True
 	elif user_input == '1':
-		periodic_playing.start_tracking()
-		is_tracking = True
+		if not is_tracking:
+			periodic_playing.start_tracking()
+			is_tracking = True
+		else:
+			print('Already tracking')
 	elif user_input == '2':
-		periodic_playing.stop_tracking()
-		is_tracking = False
+		if not is_tracking:
+			print('Not tracking')
+		else:
+			periodic_playing.stop_tracking()
+			is_tracking = False
 	elif user_input == '3':
 		user_requests.highest_play_track()
 	elif user_input == '4':
@@ -45,6 +52,7 @@ while not exit_program:
 	elif user_input == '6':
 		user_requests.print_history()
 	else:
-		print('Unknown input')	
+		print('Unknown input')
+	print('\n\n')	
 		
 
