@@ -41,8 +41,8 @@ def currently_playing():
 		track['album'] = album
 		track['artist'] = artist
 		track['artist_id'] = artist_id
-		print("track:\n")	
-		print(track)
+		#print("track:\n")	
+		#print(track)
 
 	elif status_code == 204:
 		logging.log_verbose(str(status_code) + ": nothing playing right now, or private session")

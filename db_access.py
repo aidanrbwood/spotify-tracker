@@ -90,7 +90,7 @@ def fetch_artist_plays(artist_id):
 	return plays[0][0]
 
 def current_song(track):
-	print(track)
+	#print(track)
 	song_exists = check_song_existence(track['track_id'])
 	artist_exists = check_artist_existence(track['artist_id'])
 	if not song_exists:

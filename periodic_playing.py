@@ -21,7 +21,7 @@ def track_logic():
 		r = currently_playing.currently_playing()
 		response_code = r['status_code']
 	if response_code == 200:
-		print(r)
+		#print(r)
 		track_time = r['track_duration']
 		play_time = r['track_elapsed']
 		track_id = r['track']['track_id']
