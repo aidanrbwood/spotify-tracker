@@ -30,4 +30,19 @@ def read_refresh_token():
 def write_access_token(string):
 	with open(user_folder + '/access_token', 'w') as f:
 		f.write(string)
-	return 0
+	
+def write_refresh_token(string):
+	with open(user_folder + '/refresh_token', 'w') as f:
+		f.write(string)
+
+def write_user_id(string):
+	with open(user_folder + '/client_id', 'w') as f:
+		f.write(string)
+	
+def write_authorization_code(string):
+	with open(user_folder + '/authorization_code', 'w') as f:
+		f.write(string)
+
+def write_user_secret(string):
+	with open(user_folder + '/client_secret', 'w') as f:
+		f.write(string)

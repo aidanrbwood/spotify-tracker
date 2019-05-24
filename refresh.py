@@ -9,8 +9,8 @@ import spotify_logging as logging
 def refresh_token():
 	refresh_token = user_info.read_refresh_token()
 	url = 'https://accounts.spotify.com/api/token'
-	client_id = 'def3e457b3604f958efa7a419bb277bf'
-	client_secret = 'a244c4f6748c498c896be0f18f918700'
+	client_id = user_info.read_client_id()
+	client_secret = user_info.read_client_secret()
 
 	client = str(client_id + ':' + client_secret)
 	encoded = str(base64.b64encode(bytes(client, 'utf-8')))[2:-1]
