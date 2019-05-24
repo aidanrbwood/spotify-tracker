@@ -11,3 +11,7 @@ def highest_play_artist():
 				
 def print_history():
 	db.print_history()
+
+def delete_dbs():
+	db.empty_tables()
+

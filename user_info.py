@@ -2,12 +2,12 @@
 
 user_folder = 'user_data'
 
-def read_user_id():
+def read_client_id():
 	with open('./client_id', 'r') as f:
 		id = f.read()
 	return id
 
-def read_user_secret():
+def read_client_secret():
 	with open('./client_secret', 'r') as f:
 		id = f.read()
 	return id

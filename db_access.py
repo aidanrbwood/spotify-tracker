@@ -49,6 +49,17 @@ def create_tables():
 	connection.commit()
 	close_connection(connection)
 
+def empty_tables():
+	connection = open_connection()
+	crsr = connection.cursor()
+	command = """DROP TABLE IF EXISTS songs;"""
+	crsr.execute(command)
+	command = """DROP TABLE IF EXISTS artists;"""
+	crsr.execute(command)
+	connection.commit()
+	close_connection(connection)
+	create_tables()
+
 def check_song_existence(track_id):
 	connection = open_connection()
 	crsr = connection.cursor()

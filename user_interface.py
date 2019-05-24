@@ -12,7 +12,7 @@ menu['2'] = 'Stop tracking'
 menu['3'] = 'Highest play track'
 menu['4'] = 'Highest play artist'
 menu['5'] = 'Print history'
-
+menu['6'] = 'Delete databases'
 options = list(menu.keys())
 options.sort()
 
@@ -51,6 +51,13 @@ while not exit_program:
 		user_requests.highest_play_artist()
 	elif user_input == '5':
 		user_requests.print_history()
+	elif user_input == '6':
+		i = input('Are you sure, all current data will be deleted? (Y/N)')
+		if i == 'Y' or i == 'y' or i == 'yes' or i == 'Yes':
+			user_requests.delete_dbs()
+			print("Databases cleared")
+		else:
+			print("Aborting delete")
 	else:
 		print('Unknown input')
 	print('\n\n')	
