@@ -2,11 +2,11 @@
 
 import requests
 import user_info
-import common_functions
+import util_functions
 import base64
 import db_access
 
-common_functions.check_files()
+util_functions.check_files()
 db_access.create_tables()
 
 client_id = user_info.read_client_id()

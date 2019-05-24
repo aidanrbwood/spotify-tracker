@@ -3,7 +3,7 @@
 import sqlite3
 from sqlite3 import Error
 import datetime 
-import database_helper as printer
+import util_functions as printer
 
 DB_PATH = "./databases/music.db"
 
