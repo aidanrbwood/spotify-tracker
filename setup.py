@@ -9,9 +9,7 @@ import db_access
 common_functions.check_files()
 db_access.create_tables()
 
-client_id = input("Enter your user ID:")
-user_info.write_user_id(client_id)
-print(client_id)
+client_id = user_info.read_user_id()
 payload = (('client_id', client_id), ('response_type', 'code'), ('redirect_uri', 'http://niceme.me/'), ('scope', 'user-read-currently-playing'))
 r = requests.get('https://accounts.spotify.com/authorize/', params=payload)
 print("Copy and paste the following URL into your browser, once you have done so login and you will be redirected, when you are redirected copy the URL enter it into the following prompt")
@@ -20,8 +18,7 @@ redirect_url = input("Redirect URL: ")
 auth_code = redirect_url.split('code=')[1]
 user_info.write_authorization_code(auth_code)
 
-client_secret = input("Input your user secret: ")
-user_info.write_user_secret(client_secret)
+client_secret = user_info.read_user_secret()
 url='https://accounts.spotify.com/api/token'
 redirect='http://niceme.me/'
 
