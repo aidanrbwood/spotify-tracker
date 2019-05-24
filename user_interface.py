@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import currently_playing
 import periodic_playing
 import user_requests
 
@@ -10,8 +11,7 @@ menu['1'] = 'Start tracking'
 menu['2'] = 'Stop tracking'
 menu['3'] = 'Highest play track'
 menu['4'] = 'Highest play artist'
-menu['5'] = 'Print database'
-menu['6'] = 'Print history'
+menu['5'] = 'Print history'
 
 options = list(menu.keys())
 options.sort()
@@ -19,6 +19,8 @@ options.sort()
 user_input = '-1'
 exit_program = False
 while not exit_program:
+	print('Spotify Tracker')
+	print('Currently Playing: ' + currently_playing.printable_currently_playing() + "\n")
 	if is_tracking:
 		print('Tracking is on')
 	else:
@@ -48,8 +50,6 @@ while not exit_program:
 	elif user_input == '4':
 		user_requests.highest_play_artist()
 	elif user_input == '5':
-		user_requests.print_db()
-	elif user_input == '6':
 		user_requests.print_history()
 	else:
 		print('Unknown input')

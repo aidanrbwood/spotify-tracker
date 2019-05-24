@@ -4,6 +4,7 @@ import requests
 import pprint
 import user_info
 import spotify_logging as logging
+import refresh as refresh
 
 def currently_playing():
 	access_token = user_info.read_access_token()
@@ -57,3 +58,12 @@ def currently_playing():
 	return_object['track'] = track
 	return return_object
 
+def printable_currently_playing():
+	track = "None"
+	ret = currently_playing()
+	if ret['status_code'] == 401:
+		refresh.refresh_token()
+		ret = currently_playing()
+	if ret['status_code'] == 200:
+		track = ret['track']['artist'] + " - " + ret['track']['name']
+	return track

@@ -185,9 +185,13 @@ def print_most_played_artist():
 	crsr.execute(command)
 	song = crsr.fetchall()
 	close_connection(connection)
-
+	
+	header = {}
+	header['artist'] = "ARTIST"
+	header['plays'] = "PLAYS"
+	printer.print_artist(header)
 	for result in song:
-		print(result)
+		printer.print_artist(convert_artist(result))
 
 def print_most_played_song():
 	connection = open_connection()
@@ -226,6 +230,14 @@ def print_history():
 	printer.print_track(header)
 	for result in song:
 		printer.print_track(convert_track(result))
+
+def convert_artist(artist):
+#('ARTIST_ID', 'ARTIST', 3)
+	d_artist = {}
+	d_artist['artist_id'] = artist[0]
+	d_artist['artist'] = artist[1]
+	d_artist['plays'] = artist[2]
+	return d_artist
 
 def convert_track(track):
 #('TRACK_ID', 'ARTIST', 'ALBUM', 'NAME', 1, 2, '2019-05-23 20:46:08')
