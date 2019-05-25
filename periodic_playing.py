@@ -7,10 +7,25 @@ import spotify_logging as logging
 import database_helper
 import db_access as db
 
+# These three variables need to be static
 previous_track_id = ''
 previous_play_time = 0
 tracking = False
 
+#########################################################################
+# track_logic
+# inputs: 
+#		None
+#	outputs: 
+#		None
+# side effects:
+#		if the correct conditions are met it will pass song and artist
+#		data to db_access for writing into the databases
+# purpose: 
+# 	decides whether the currently playing track has been playing
+# 	enough and isn't the same play of the same song to register as a play 
+# 	if it is, pass it off to db_access to get added/incremented in the db
+#########################################################################
 def track_logic():
 	global previous_track_id
 	global previous_play_time
@@ -38,17 +53,57 @@ def track_logic():
 		else:
 				logging.log_verbose("new track_id, but has not been played long enough to register as a play, waiting until 20+ seconds to play")
 			
+#######################################################################
+# timer_shell
+# inputs: 
+#		None
+#	outputs: 
+#		None
+# side effects:
+#		recursively calls itself every 10 seconds if track is on to spawn a 
+#		new thread that then runs track_logic
+# purpose: 
+#		implements the periodic nature of the tracker, when tracking is on
+#		the first call to the function spawns a timed thread that runs
+#		timer_shell again after a 10s delay, and then it runs track_logic
+#		this creates a cycle of every 10s a new thread running track_logic
+#		so that the current spotify data is consistently analyzed
+#######################################################################
 def timer_shell():
     global tracking
     if tracking:	
     	threading.Timer(10.0, timer_shell).start()
     	track_logic()
 
+#########################################################################
+# stop_tracking
+# inputs: 
+#		None
+#	outputs:
+#		None
+# side effects:
+#		sets tracking to false and logs
+# purpose:
+#		wraps the act of setting the tracking global to false for use
+#		by other functions such as user_requests
+#########################################################################
 def stop_tracking():
     global tracking
     tracking = False
     logging.log_info('Stopping tracking...')
 
+#########################################################################
+#	start_tracking 
+# inputs: 
+#		None
+#	outputs: 
+#		None
+# side effects:
+#		sets tracking to true and logs
+# purpose: 
+#		wraps the act of settings the tracking global to true for use by 
+#		other functions such as user_requests
+#########################################################################
 def start_tracking():
     global tracking
     logging.log_info('Starting tracking...')
