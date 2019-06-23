@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-import database_helper
 import db_access as db
 
 def highest_play_track():

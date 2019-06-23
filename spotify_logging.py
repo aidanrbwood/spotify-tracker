@@ -2,7 +2,7 @@
 
 import datetime
 
-ENABLED = False
+enabled = False
 verbose = False
 
 def log_info(msg):
