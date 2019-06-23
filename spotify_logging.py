@@ -8,8 +8,8 @@ verbose = False
 def log_info(msg):
 	global ENABLED
 	if enabled:
-    with open('spotify.log', 'a') as log:
-      log.write('INFO:\t' + current_time() + '\t' + msg + '\n')
+		with open('spotify.log', 'a') as log:
+			log.write('INFO:\t' + current_time() + '\t' + msg + '\n')
 
 def log_error(msg):
 	global ENABLED

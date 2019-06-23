@@ -4,7 +4,6 @@ import currently_playing
 import refresh
 import threading
 import spotify_logging as logging
-import database_helper
 import db_access as db
 
 # These three variables need to be static
