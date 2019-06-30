@@ -64,14 +64,17 @@ def track_logic():
 # purpose: 
 #		implements the periodic nature of the tracker, when tracking is on
 #		the first call to the function spawns a timed thread that runs
-#		timer_shell again after a 10s delay, and then it runs track_logic
+#		timer_shell again after a 60s delay, and then it runs track_logic
 #		this creates a cycle of every 10s a new thread running track_logic
 #		so that the current spotify data is consistently analyzed
+#		I had the value at 10s previously, and you can change it if you want
+#		but I was having a problem with maxing out the # of API calls you
+#		can make in a certain amount of time
 #######################################################################
 def timer_shell():
     global tracking
     if tracking:	
-    	threading.Timer(10.0, timer_shell).start()
+    	threading.Timer(60.0, timer_shell).start()
     	track_logic()
 
 #########################################################################
